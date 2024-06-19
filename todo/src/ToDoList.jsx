@@ -103,6 +103,19 @@ function ToDoList() {
         toast("Task removed")
     }
 
+    function editTask(event){
+        console.log(event)
+        const index = event.target.accessKey;
+        let ww = [...tasks];
+        ww[index] = event.target.value;
+        setTask(ww);
+        toast("Task edited");
+    }
+
+    function getTask(event){
+        return tasks[event.target.accessKey];
+    }
+
 
 
     return (<>
@@ -139,8 +152,8 @@ function ToDoList() {
                     {tasks.map((task, index) =>
                         <li key={index} className="element flex flex-row my-3 py-3 border rounded-2xl">
 
-                            <textarea id="task-text" className=" text-green-200 basis-10/12 text-center font-medium text-xl content-center bg-transparent px-5 outline-none" readOnly value={task}>
-                                {/* {task} */}
+                            <textarea accessKey={index} id="task-text" className=" text-green-200 basis-10/12 text-center font-medium text-xl content-center bg-transparent px-5 outline-none" value={task} onChange={editTask}>
+                                {/* {task}  */}
                             </textarea>
                             <span className="block">
                                 <button onClick={() => taskDone(index)} className="px-2 pt-3"><script src="https://cdn.lordicon.com/lordicon.js"></script>
