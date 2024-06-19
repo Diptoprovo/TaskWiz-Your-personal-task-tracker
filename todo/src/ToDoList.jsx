@@ -109,7 +109,7 @@ function ToDoList() {
         let ww = [...tasks];
         ww[index] = event.target.value;
         setTask(ww);
-        toast("Task edited");
+        //toast("Task edited");
     }
 
     function getTask(event){
