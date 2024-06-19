@@ -1,8 +1,8 @@
-export default function Footer(){
-    return(
+export default function Footer() {
+    return (
         <>
 
-{/* <footer class="bg-white rounded-lg shadow dark:bg-orange-950 ">
+            {/* <footer class="bg-white rounded-lg shadow dark:bg-orange-950 ">
     <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
       <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
     </span>
@@ -26,12 +26,14 @@ export default function Footer(){
 
 
 
-<footer class="fixed bottom-0 left-0 z-20 w-full p-4 border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 bg-opacity-80 bg-gray-800 dark:border-gray-600">
-    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://github.com/Diptoprovo" class="hover:underline">TaskWiz™</a>. All Rights Reserved.
-    </span>
-    <a href="https://lordicon.com/" className=" text-gray-500">Icons by Lordicon.com</a>
-</footer>
-</>
+            <footer class="relative bottom-0 left-0 z-20 w-full p-4 border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6  bg-slate-900 dark:border-gray-600">
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://github.com/Diptoprovo" class="hover:underline">TaskWiz™</a>. All Rights Reserved.
+                </span>
+                <span className="block">
+                    <a href="https://lordicon.com/" className=" text-gray-500">Icons by Lordicon.com</a>
+                </span>
+            </footer>
+        </>
 
     )
 }

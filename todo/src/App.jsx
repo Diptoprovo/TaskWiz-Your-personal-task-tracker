@@ -7,10 +7,11 @@ function App() {
     <><div className="bg-gradient-to-b from-slate-900 to-red-900 h-max min-h-screen">
       <Header/>
       <ToDoList/>
-      <Footer/>
       <div className="min-h-[1vh]"></div>
 
+
     </div>
+      <Footer/>
     
     </>
   )
