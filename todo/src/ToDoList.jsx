@@ -28,9 +28,9 @@ function ToDoList() {
 
     function addTask() {
         if (newTask.trim() !== "") {
-            localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
-            console.log([[...tasks, newTask]])
-            setTask(t => [...t, newTask])
+            localStorage.setItem("tasks", JSON.stringify([ newTask, ...tasks]));
+            console.log([[newTask, ...tasks ]])
+            setTask(t => [newTask, ...t])
             setNewTask("")
             toast("Task added")
         }
