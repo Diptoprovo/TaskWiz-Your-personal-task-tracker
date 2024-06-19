@@ -1,5 +1,5 @@
-# To-Do-List
-Simple ToDo List with reactJS 
+# Task Tracker
+Task Tracker with reactJS 
 
 functionality : 
 1. add or remove tasks
