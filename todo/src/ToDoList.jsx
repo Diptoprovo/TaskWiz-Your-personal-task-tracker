@@ -28,8 +28,8 @@ function ToDoList() {
 
     function addTask() {
         if (newTask.trim() !== "") {
-            localStorage.setItem("tasks", JSON.stringify([ newTask, ...tasks]));
-            console.log([[newTask, ...tasks ]])
+            localStorage.setItem("tasks", JSON.stringify([newTask, ...tasks]));
+            console.log([[newTask, ...tasks]])
             setTask(t => [newTask, ...t])
             setNewTask("")
             toast("Task added")
@@ -59,7 +59,7 @@ function ToDoList() {
             toast("Task moved up")
         }
     }
-
+    // [a[i],a[i+1]] = [a[i+1], a[i]]
     function moveDown(index) {
         if (index < tasks.length - 1) {
             const updatedTasks = [...tasks]
@@ -103,7 +103,7 @@ function ToDoList() {
         toast("Task removed")
     }
 
-    function editTask(event){
+    function editTask(event) {
         console.log(event)
         const index = event.target.accessKey;
         let ww = [...tasks];
@@ -112,8 +112,36 @@ function ToDoList() {
         //toast("Task edited");
     }
 
-    function getTask(event){
+    function getTask(event) {
         return tasks[event.target.accessKey];
+    }
+
+    function print() {
+        //console.log("here");
+        if(tasks[0]){
+            let comp = document.createElement("ul");
+            tasks.forEach((task) => {
+                let item = document.createElement("li");
+                item.innerHTML = task;
+                comp.appendChild(item);
+            })
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html>');
+            a.document.write('<body style="font-family: monospace;"><h3 style="display: inline-block;">TaskWiz</h3>  <h4>Your tasks : </h4><div style="margin-left: 2em;">');
+            a.document.write(comp.innerHTML);
+            a.document.write('</div></body></html>');
+            a.print();
+            a.close();
+        }else{
+            toast("Task list empty");
+        }
+        // const original = dcoument.body.innerHTML;
+        // document.body.innerHTML = comp;
+        // window.print();
+        // document.body.innerHTML = original;
+        //<img src="wired-lineal-12-layers.png" style="display: inline-block; "/>
+
+
     }
 
 
@@ -121,9 +149,13 @@ function ToDoList() {
     return (<>
         <Toaster
             position="bottom-right"
+            toastOptions={{
+                className: '',
+                duration: 1000,
+
+            }}
         />
         {/* <div class="absolute top-0 z-[-2] h-max min-h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"> */}
-
 
 
         <div className="to-do-list font-sans  ">
@@ -131,14 +163,14 @@ function ToDoList() {
             <h1 className=" text-center pt-10 font-bold text-4xl text-white"><script src="https://cdn.lordicon.com/lordicon.js"></script>
                 <lord-icon
                     src="https://cdn.lordicon.com/pcllgpqm.json"
-                    trigger="hover"
+                    trigger="loop"
                     stroke="light"
                 >
                 </lord-icon><span className="mx-2">TaskWiz</span></h1>
             <h3 className=" text-center pb-10 text-xl bg-gradient-to-r from-lime-700 to-zinc-300 bg-clip-text text-transparent font-mono">Your personal task tracker</h3>
 
-            <div className="flex flex-row justify-center">
-                <input type="text" value={newTask} onChange={newTaskDetails} placeholder="Enter a task" className="min-w-80 text-white px-1 py-1 me-2 bg-inherit border border-green-500 rounded-lg" />
+            <div className="flex flex-row justify-center basis-11/12">
+                <input type="text" value={newTask} onChange={newTaskDetails} placeholder="Enter a task" className="max-w-3xl flex-1 text-white px-1 py-1 ms-8 me-5 bg-inherit border border-green-500 rounded-lg" />
                 <button onClick={addTask} className="px-2"><script src="https://cdn.lordicon.com/lordicon.js"></script>
                     <lord-icon
                         src="https://cdn.lordicon.com/hqymfzvj.json"
@@ -147,8 +179,9 @@ function ToDoList() {
                     >
                     </lord-icon></button>
             </div>
+
             <div className="border-b border-green-400 mx-10 py-5">
-                <ol className="list flex flex-col">
+                <ol className="list flex flex-col" id="list">
                     {tasks.map((task, index) =>
                         <li key={index} className="element flex flex-row my-3 py-3 border rounded-2xl">
 
@@ -190,15 +223,27 @@ function ToDoList() {
                             </span>
                         </li>)}
                 </ol>
+                <span className="flex justify-end">
+                    <button className="text-white py-2 px-2 mt-2" onClick={print}>
+
+                        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/xtnsvhie.json"
+                            trigger="hover"
+                            colors="primary:#ffffff">
+                        </lord-icon>
+                        <div className="text-sm">Print</div>
+                    </button>
+                </span>
             </div>
             <div className="mx-10 my-20 py-5 flex flex-col">
-                <h3 className="text-2xl text-green-400 text-center cursor-pointer content-center w-fit" onClick={showComplete}><script src="https://cdn.lordicon.com/lordicon.js"></script>
+                <h3 className="text-2xl text-green-400 text-center cursor-pointer content-center w-fit ho" onClick={showComplete}><script src="https://cdn.lordicon.com/lordicon.js"></script>
                     <lord-icon
                         src="https://cdn.lordicon.com/zrtfxghu.json"
                         trigger="hover"
                         colors="primary:#ffffff"
                     >
-                    </lord-icon><span className="px-2">Recent tasks: </span></h3>
+                    </lord-icon><span className="px-2">Recent tasks <span className="text-sm hover:text-white transition-all">(hide/show)</span>: </span></h3>
 
                 {/* <button onClick={showComplete} className="px-2"><lord-icon trigger="hover" src="/src/assets/show.json">recent</lord-icon></button> */}
 
